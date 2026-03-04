@@ -1,2 +1,3 @@
-# SQL-Project-2
-Explore the interactive dashboard below to uncover hidden revenue patterns and see exactly how the 2019 data challenges the accountant.
+# Sales Performance 
+**Project Overview:** An end-to-end BI solution identifying a $1.1M revenue
+**opportunity:** correcting internal reporting inaccuracies for a 2019 electronics dataset.
