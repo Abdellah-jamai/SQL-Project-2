@@ -1,0 +1,158 @@
+/* =========================================================================== 
+STAGING & ANALYSIS: 2019 SALES DATA 
+1. Restore Database 
+2. Consolidate 12 Monthly Tables 
+3. Clean & Parse Address Data 
+4. Generate Key Metrics & Answer Stakeholder Questions 
+=========================================================================== */
+IF OBJECT_ID('Cleaned_Sales_2019', 'U') IS NOT NULL
+    DROP TABLE Cleaned_Sales_2019;
+GO
+
+SELECT
+    SA.Order_ID,
+    SA.Product,
+    SA.Quantity_Ordered,
+    SA.Price_Each,
+    (SA.Quantity_Ordered * SA.Price_Each) AS Total_Sales,
+    (SA.Quantity_Ordered * SA.Price_Each) AS Revenue,
+    SA.Order_Date,
+    DATENAME(MONTH, SA.Order_Date) AS Month_Name,
+    MONTH(SA.Order_Date) AS Month_Number,
+
+    SUBSTRING(SA.Purchase_Address, 1, CHARINDEX(',', SA.Purchase_Address)-1) AS Street,
+    TRIM(SUBSTRING(
+        SA.Purchase_Address,
+        CHARINDEX(',', SA.Purchase_Address)+2,
+        CHARINDEX(',', SA.Purchase_Address, CHARINDEX(',', SA.Purchase_Address)+1)
+          - CHARINDEX(',', SA.Purchase_Address) - 2
+    )) AS City,
+    SUBSTRING(SA.Purchase_Address, LEN(SA.Purchase_Address)-7, 2) AS State,
+    SUBSTRING(SA.Purchase_Address, LEN(SA.Purchase_Address)-4, 5) AS Zip_Code,
+
+    GETDATE() AS Load_Date
+
+INTO Cleaned_Sales_2019
+FROM (
+    SELECT 
+        TRY_CAST(Order_ID AS INT) AS Order_ID,
+        Product AS Product,
+        TRY_CAST(Quantity_Ordered AS INT) AS Quantity_Ordered,
+        TRY_CAST(Price_Each AS DECIMAL(18,2)) AS Price_Each,
+        Order_Date AS Order_Date,
+        Purchase_Address AS Purchase_Address
+    FROM Sales_January_2019
+
+    UNION ALL
+    SELECT 
+        TRY_CAST(CONVERT(VARCHAR(20), Order_ID, 112) AS INT) AS Order_ID,
+        Product AS Product,
+        TRY_CAST(Quantity_Ordered AS INT) AS Quantity_Ordered,
+        TRY_CAST(Price_Each AS DECIMAL(18,2)) AS Price_Each,
+        Order_Date AS Order_Date,
+        Purchase_Address AS Purchase_Address
+    FROM Sales_February_2019
+
+    UNION ALL
+    SELECT 
+        TRY_CAST(Order_ID AS INT) AS Order_ID,
+        Product AS Product,
+        TRY_CAST(Quantity_Ordered AS INT) AS Quantity_Ordered,
+        TRY_CAST(Price_Each AS DECIMAL(18,2)) AS Price_Each,
+        Order_Date AS Order_Date,
+        Purchase_Address AS Purchase_Address
+    FROM Sales_March_2019
+
+    UNION ALL
+    SELECT 
+        TRY_CAST(Order_ID AS INT) AS Order_ID,
+        Product AS Product,
+        TRY_CAST(Quantity_Ordered AS INT) AS Quantity_Ordered,
+        TRY_CAST(Price_Each AS DECIMAL(18,2)) AS Price_Each,
+        Order_Date AS Order_Date,
+        Purchase_Address AS Purchase_Address
+    FROM Sales_April_2019
+
+    UNION ALL
+    SELECT 
+        TRY_CAST(Order_ID AS INT) AS Order_ID,
+        Product AS Product,
+        TRY_CAST(Quantity_Ordered AS INT) AS Quantity_Ordered,
+        TRY_CAST(Price_Each AS DECIMAL(18,2)) AS Price_Each,
+        Order_Date AS Order_Date,
+        Purchase_Address AS Purchase_Address
+    FROM Sales_May_2019
+
+    UNION ALL
+    SELECT 
+        TRY_CAST(Order_ID AS INT) AS Order_ID,
+        Product AS Product,
+        TRY_CAST(Quantity_Ordered AS INT) AS Quantity_Ordered,
+        TRY_CAST(Price_Each AS DECIMAL(18,2)) AS Price_Each,
+        Order_Date AS Order_Date,
+        Purchase_Address AS Purchase_Address
+    FROM Sales_June_2019
+
+    UNION ALL
+    SELECT 
+        TRY_CAST(Order_ID AS INT) AS Order_ID,
+        Product AS Product,
+        TRY_CAST(Quantity_Ordered AS INT) AS Quantity_Ordered,
+        TRY_CAST(Price_Each AS DECIMAL(18,2)) AS Price_Each,
+        Order_Date AS Order_Date,
+        Purchase_Address AS Purchase_Address
+    FROM Sales_July_2019
+
+    UNION ALL
+    SELECT 
+        TRY_CAST(Order_ID AS INT) AS Order_ID,
+        Product AS Product,
+        TRY_CAST(Quantity_Ordered AS INT) AS Quantity_Ordered,
+        TRY_CAST(Price_Each AS DECIMAL(18,2)) AS Price_Each,
+        Order_Date AS Order_Date,
+        Purchase_Address AS Purchase_Address
+    FROM Sales_August_2019
+
+    UNION ALL
+    SELECT 
+        TRY_CAST(Order_ID AS INT) AS Order_ID,
+        Product AS Product,
+        TRY_CAST(Quantity_Ordered AS INT) AS Quantity_Ordered,
+        TRY_CAST(Price_Each AS DECIMAL(18,2)) AS Price_Each,
+        Order_Date AS Order_Date,
+        Purchase_Address AS Purchase_Address
+    FROM Sales_September_2019
+
+    UNION ALL
+    SELECT 
+        TRY_CAST(Order_ID AS INT) AS Order_ID,
+        Product AS Product,
+        TRY_CAST(Quantity_Ordered AS INT) AS Quantity_Ordered,
+        TRY_CAST(Price_Each AS DECIMAL(18,2)) AS Price_Each,
+        Order_Date AS Order_Date,
+        Purchase_Address AS Purchase_Address
+    FROM Sales_October_2019
+
+    UNION ALL
+    SELECT 
+        TRY_CAST(Order_ID AS INT) AS Order_ID,
+        Product AS Product,
+        TRY_CAST(Quantity_Ordered AS INT) AS Quantity_Ordered,
+        TRY_CAST(Price_Each AS DECIMAL(18,2)) AS Price_Each,
+        Order_Date AS Order_Date,
+        Purchase_Address AS Purchase_Address
+    FROM Sales_November_2019
+
+    UNION ALL
+    SELECT 
+        TRY_CAST(Order_ID AS INT) AS Order_ID,
+        Product AS Product,
+        TRY_CAST(Quantity_Ordered AS INT) AS Quantity_Ordered,
+        TRY_CAST(Price_Each AS DECIMAL(18,2)) AS Price_Each,
+        Order_Date AS Order_Date,
+        Purchase_Address AS Purchase_Address
+    FROM Sales_December_2019
+) AS SA
+WHERE SA.Order_Date IS NOT NULL
+  AND SA.Order_ID IS NOT NULL;
+GO
