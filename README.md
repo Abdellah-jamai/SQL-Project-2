@@ -66,21 +66,21 @@ The assistant manger suggested that we should place more marketing attention on 
 ---
 * The products that bring the most money: MacBook Pro, laptop and iPhone bring more than 32 million dollars, even though they don't sell as many.
 
-**.** The volume factors: AAA Batteries and Lightning Charging Cables are your most frequently sold items.
+* The volume factors: AAA Batteries and Lightning Charging Cables are your most frequently sold items.
 
-**.** Useful Advice: Don't waste money on battery ads for marketing purposes. Instead, use "frequently bought together" packages. Attach a profitable accessory (like a case or extra cable) to every MacBook or iPhone sale to increase your Average Order Value ($185.05).
+* Useful Advice: Don't waste money on battery ads for marketing purposes. Instead, use "frequently bought together" packages. Attach a profitable accessory (like a case or extra cable) to every MacBook or iPhone sale to increase your Average Order Value ($185.05).
 
-**.** San Francisco is the clear market leader, generating nearly $8 Million in revenue.
+* San Francisco is the clear market leader, generating nearly $8 Million in revenue.
 
-**.** Boston is ranks as #4 top city.
+* Boston is ranks as #4 top city.
 
-**.** Shift 15% of the marketing budget currently assigned to lower-performing cities like Austin or Seattle toward San Francisco and Boston. These cities have a much higher "transformation speed."
+* Shift 15% of the marketing budget currently assigned to lower-performing cities like Austin or Seattle toward San Francisco and Boston. These cities have a much higher "transformation speed."
 
-**.** October through December is a "Golden Quarter," peaking in December with nearly $4.6M in sales.
+* October through December is a "Golden Quarter," peaking in December with nearly $4.6M in sales.
 
-**.** In every single year, February revenue drops to nearly zero. EX **2019 (~7k)**
+* In every single year, February revenue drops to nearly zero. EX **2019 (~7k)**
 
-**.** This is likely not a market trend but a data logging issue or a stockout period. Investigate the system or checkout for February to restore what should be a normal sales month.
+* This is likely not a market trend but a data logging issue or a stockout period. Investigate the system or checkout for February to restore what should be a normal sales month.
 
 
 ### Showcase (Technical Skills)
