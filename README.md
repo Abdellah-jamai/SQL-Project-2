@@ -102,7 +102,13 @@ The assistant manger suggested that we should place more marketing attention on 
 
 
 
+**Final Dashboard:** <img width="969" height="542" alt="final dashboard " src="https://github.com/user-attachments/assets/1f611b48-85cc-4d2d-8d9a-7de5ad528d0b" />
 
+
+**Database** [Sale_2019.zip](https://github.com/user-attachments/files/25762921/Sale_2019.zip)
+
+
+**Linkedin**  www.linkedin.com/in/abdellah-jamai-633666295
 
 
 
