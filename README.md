@@ -64,7 +64,7 @@ The assistant manger suggested that we should place more marketing attention on 
 
 ## Insights
 ---
-**.** The products that bring the most money: MacBook Pro, laptop and iPhone bring more than 32 million dollars, even though they don't sell as many.
+* The products that bring the most money: MacBook Pro, laptop and iPhone bring more than 32 million dollars, even though they don't sell as many.
 
 **.** The volume factors: AAA Batteries and Lightning Charging Cables are your most frequently sold items.
 
