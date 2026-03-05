@@ -1,0 +1,78 @@
+--Checking for Nulls--
+SELECT *
+FROM Cleaned_Sales_2019
+WHERE Order_ID IS NULL
+   OR Product IS NULL
+   OR Quantity_Ordered IS NULL
+   OR Price_Each IS NULL
+   OR Revenue IS NULL
+   OR Order_Date IS NULL
+   OR Street IS NULL
+   OR City IS NULL
+   OR State IS NULL
+   OR Zip_Code IS NULL;
+
+--Chicking for duplicate--
+SELECT Order_ID, COUNT(*) AS DuplicateCount
+FROM Cleaned_Sales_2019
+GROUP BY Order_ID
+HAVING COUNT(*) > 1;
+
+SELECT Order_ID, COUNT(DISTINCT Product) AS DistinctProducts
+FROM Cleaned_Sales_2019
+WHERE Order_ID IN (2,3)
+GROUP BY Order_ID;
+
+SELECT Order_ID, COUNT(DISTINCT Product) AS DistinctProducts
+FROM Cleaned_Sales_2019
+GROUP BY Order_ID
+HAVING COUNT(DISTINCT Product) > 1;
+
+--Sales Distribution by Month--
+SELECT Month_Name, COUNT(*) AS Orders, SUM(Revenue) AS TotalRevenue
+FROM Cleaned_Sales_2019
+GROUP BY Month_Name
+
+--Date Range Validation--
+SELECT MIN(Order_Date) AS EarliestOrder,
+       MAX(Order_Date) AS LatestOrder
+FROM Cleaned_Sales_2019;
+
+--Check State Abbreviations--
+SELECT DISTINCT State
+FROM Cleaned_Sales_2019
+WHERE LEN(State) <> 2
+   OR State NOT LIKE '[A-Z][A-Z]';
+
+--Check Zip Code Format--
+SELECT *
+FROM Cleaned_Sales_2019
+WHERE LEN(Zip_Code) <> 5
+   OR Zip_Code NOT LIKE '[0-9][0-9][0-9][0-9][0-9]';
+
+
+--Validate Revenue Calculation--
+SELECT *
+FROM Cleaned_Sales_2019
+WHERE Revenue <> (Quantity_Ordered * Price_Each);
+
+--Check for Negative or Zero Quantities/Prices--
+SELECT *
+FROM Cleaned_Sales_2019
+WHERE Quantity_Ordered <= 0
+   OR Price_Each <= 0;
+
+
+--Chicking for order details--
+SELECT *
+FROM Cleaned_Sales_2019
+WHERE Order_ID IN (2,3)
+ORDER BY Order_ID, Product;
+
+
+--Compare quantities and prices for duplicates--
+SELECT Order_ID, Product, Quantity_Ordered, Price_Each, COUNT(*) AS SA
+FROM Cleaned_Sales_2019
+WHERE Order_ID IN (2,3)
+GROUP BY Order_ID, Product, Quantity_Ordered, Price_Each
+HAVING COUNT(*) > 1;
